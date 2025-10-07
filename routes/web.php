@@ -11,5 +11,9 @@ Route::fallback(function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => ['guest:admin']], function () {
     Route::get('/', [AdminLoginController::class, 'login'])->name('admin.login');
-    Route::post('/login', [AdminLoginController::class, 'authenticate'])->name('admin.login.submit')->withoutMiddleware('Demo');
+    Route::post('/login', [AdminLoginController::class, 'authenticate'])->name('admin.login.submit');
 });
+
+Route::get('user-login',function(){
+    //
+})->name('user.login');

@@ -141,3 +141,48 @@ if (!function_exists('hex2rgb')) {
 }
 
 
+if (!function_exists('format_price')) {
+    function format_price($value): string
+    {
+        return $value;
+    }
+}
+
+if (!function_exists('upload_picture')) {
+    function upload_picture($directory, $img): string
+    {
+        $directory = public_path($directory);
+        $file_name = time();
+        $file_name .= rand();
+        $file_name = sha1($file_name);
+        if (!file_exists($directory)) mkdir($directory, 0777, true);
+        $ext = $img->getClientOriginalExtension();
+        $newFileName = $file_name . "." . $ext;
+        $img->move($directory, $newFileName);
+        return $newFileName;
+    }
+}
+
+if (!function_exists('update_picture')) {
+    function update_picture($directory, $img, $old_img): string
+    {
+        $directory = public_path($directory);
+        $file_name = sha1(time() . rand());
+        if (!file_exists($directory)) mkdir($directory, 0777, true);
+        $ext = $img->getClientOriginalExtension();
+        $newFileName = $file_name . "." . $ext;
+        $oldImgPath = $directory . '/' . $old_img;
+        if (file_exists($oldImgPath)) @unlink($oldImgPath);
+        $img->move($directory, $newFileName);
+        return $newFileName;
+    }
+}
+if (!function_exists('deleteFile')) {
+    function deleteFile($path, $file): bool
+    {
+        if (!$file) return false;
+        $oldImgPath = $path . '/' . $file;
+        if (file_exists($oldImgPath)) @unlink($oldImgPath);
+        return true;
+    }
+}

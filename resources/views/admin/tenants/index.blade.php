@@ -42,10 +42,12 @@
                                         <thead>
                                         <tr>
                                             <th scope="col">#</th>
+                                            <th scope="col">{{__('Picture')}}</th>
                                             <th scope="col">{{__('Username')}}</th>
                                             <th scope="col">{{__('Email')}}</th>
                                             <th scope="col">{{__('First Name')}}</th>
                                             <th scope="col">{{__('Last Name')}}</th>
+                                            <th scope="col">{{__('Role')}}</th>
                                             <th scope="col">{{__('Status')}}</th>
                                             <th scope="col">{{__('Actions')}}</th>
                                         </tr>
@@ -55,10 +57,16 @@
                                             @if ($user->id != Auth::guard('admin')->user()->id)
                                                 <tr>
                                                     <td>{{$loop->iteration}}</td>
+                                                    <td>
+                                                        <img src="{{isset($user->image) ?  asset('assets/admin/img/propics/'.$user->image) : asset('assets/admin/img/noimage.jpg')}}" alt="" width="45">
+                                                    </td>
                                                     <td>{{$user->username}}</td>
                                                     <td>{{$user->email}}</td>
                                                     <td>{{$user->first_name}}</td>
                                                     <td>{{$user->last_name}}</td>
+                                                    <td>
+                                                      {{$user->role->name}}
+                                                    </td>
                                                     <td>
                                                         @if ($user->status == 1)
                                                             <span class="badge badge-success">{{__('Active')}}</span>

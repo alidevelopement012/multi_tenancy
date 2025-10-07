@@ -15,6 +15,19 @@
           <div class="row">
             <div class="col-lg-6">
               <div class="form-group">
+                  <label for="image"><strong>{{__('Featured Image')}} **</strong></label>
+                <div class="col-md-12 showImage mb-3">
+                  <img src="{{asset('assets/admin/img/noimage.jpg')}}" alt="..." class="img-thumbnail">
+                </div>
+                <input type="file" name="image" id="image" class="form-control image">
+                <p id="errimage" class="mb-0 text-danger em"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
                 <label for="">{{__('Username')}} **</label>
                 <input type="text" class="form-control" name="username" placeholder="{{__('Enter username')}}" value="">
                 <p id="errusername" class="mb-0 text-danger em"></p>
@@ -59,6 +72,21 @@
                 <label for="">{{__('Re-type Password')}} **</label>
                 <input type="password" class="form-control" name="password_confirmation" placeholder="{{__('Enter your password again')}}" value="">
                 <p id="errpassword_confirmation" class="mb-0 text-danger em"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label for="">{{__('Role')}} **</label>
+                <select class="form-control" name="role_id">
+                  <option value="" selected disabled>{{__('Select a Role')}}</option>
+                  @foreach ($roles as $key => $role)
+                  <option value="{{$role->id}}">{{$role->name}}</option>
+                  @endforeach
+                </select>
+                <p id="errrole_id" class="mb-0 text-danger em"></p>
               </div>
             </div>
           </div>
